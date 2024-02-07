@@ -1,22 +1,26 @@
-class Pedido(var numero: Int, var platos: MutableList<Plato>, var estado: String = "pendiente"){
+class Pedido{
     companion object{
-        //No pertenece a ningún pedido en concreto, sino que es un valor global a todos y se utilizará para calcular automáticamente los números de los pedidos.
+        var contPedidos = 0
     }
+
+    val numero = ++contPedidos
+    var platos = mutableListOf<Plato>()
+    var estado = "pendiente"
 
     fun agregarPlato(plato: Plato){
         platos.add(plato)
     }
 
     fun eliminarPlato(nombrePlato: String){
-
+        platos.removeAll { it.nombre == nombrePlato }
     }
 
-    fun calcularPrecio(){
-
+    fun calcularPrecio(): Double{
+        return platos.sumOf { it.precio }
     }
 
-    fun calcularTiempo(){
-
+    fun calcularTiempo(): Int{
+        return platos.sumOf { it.tiempoPreparacion }
     }
 
     override fun toString() = ""
