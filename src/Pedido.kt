@@ -23,6 +23,6 @@ class Pedido{
         return platos.sumOf { it.tiempoPreparacion }
     }
 
-    override fun toString() = ""
-
+    //override fun toString() = ""
+    //return platos.joinToString("\n")
 }
